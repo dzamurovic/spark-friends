@@ -18,14 +18,14 @@ def user_connections(spark):
         .withColumn("row_number", row_number().over(in_window_spec)) \
         .where(col("row_number") == 1) \
         .drop("row_number") \
-        .withColumnRenamed("target", "user_id")
+        .withColumnRenamed("target", "user_id") \
+        .withColumnRenamed("source", "target")
 
     outgoing_connections.union(incoming_connections) \
         .dropDuplicates() \
         .orderBy("user_id", "target") \
         .write.mode("overwrite") \
         .saveAsTable("user_connections")
-
 
 
 def heavyN(spark, n=5):

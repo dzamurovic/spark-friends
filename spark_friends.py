@@ -30,10 +30,13 @@ if __name__ == "__main__":
         .getOrCreate()
 
 
-    # users_df = spark.read.schema(users_schema).json("users.json").write.mode("overwrite").saveAsTable("users")
+    # users_df = spark.read.schema(users_schema).json("users.json")
+    # users_df.write.mode("overwrite").saveAsTable("users")
     # users_df.show(truncate=False)
-    # events_df = spark.read.schema(events_schema).json("events.json").write.mode("overwrite").saveAsTable("events")
+    # events_df = spark.read.schema(events_schema).json("events.json")
+    # events_df.write.mode("overwrite").saveAsTable("events")
     # events_df.show(truncate=False)
+
 
     # Hive queries
     # spark.sql("show databases").show(truncate=False)
@@ -41,18 +44,19 @@ if __name__ == "__main__":
 
 
     # 1. list connections for each of the users
-    user_connections(spark)
+    # user_connections(spark)
 
     # 2. show top N most heavy connections
-    if len(sys.argv) < 2:
-        print("ERROR: Missing argument much?")
-    else:
-        n = int(sys.argv[1])
-        heavyN(spark, n)
+    # if len(sys.argv) < 2:
+    #     print("ERROR: Missing argument much?")
+    # else:
+    #     n = int(sys.argv[1])
+    #     heavyN(spark, n)
 
     # 3. show user whose photos are the most popular
     most_popular_photos(spark)
 
     # 4. use hive script to show these results with user's names
+    # number of connections in user_connections
     
     spark.stop()
